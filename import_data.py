@@ -34,12 +34,12 @@ mycursor.execute("""
 mycursor.execute("DELETE FROM CLASH_ROYALE.Clash_Unit")
 mydb.commit()
 
-#Read data from a csv file
+#LEGGE I DATI DI CSV
 clash_data = pd.read_csv('./cr-unit-attributes.csv', index_col=False, delimiter = ',')
 clash_data = clash_data.fillna('Null')
 print(clash_data.head(20))
 
-#Fill the table
+#RIEMPIE LA TABELLA
 for i,row in clash_data.iterrows():
     cursor = mydb.cursor()
     #here %S means string values 
@@ -52,6 +52,7 @@ for i,row in clash_data.iterrows():
 #Check if the table has been filled
 mycursor.execute("SELECT * FROM CLASH_ROYALE.Clash_Unit")
 myresult = mycursor.fetchall()
+
 
 for x in myresult:
   print(x)
